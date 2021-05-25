@@ -7,8 +7,11 @@ class BodyTop extends StatefulWidget {
 }
 
 class _BodyTopState extends State<BodyTop> {
+  String _selectDate;
+
   @override
   Widget build(BuildContext context) {
+
     return Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -24,7 +27,7 @@ class _BodyTopState extends State<BodyTop> {
               horizontalTitleGap: 0,
               title: Text(
                 '1 Adult, Economy',
-                style: TextStyle(fontSize: 18, color: Colors.white),
+                style: TextStyle(fontSize: 18),
               ),
             ),
           ),
@@ -71,20 +74,29 @@ class _BodyTopState extends State<BodyTop> {
             child: ListTile(
               selected: true,
               leading: Icon(
-                Icons.calendar_today, color: Colors.white, size: 30,),
+                Icons.calendar_today, color: _selectDate == null ? Color(0xFFF7D4F1) : Colors.white, size: 30,),
               horizontalTitleGap: 0,
-              title: Text(
-                'Jan 13 - Jan 30',
-                style: TextStyle(fontSize: 18, color: Colors.white),
+              title: Text(_selectDate ?? 'Select Dates',
+                style: TextStyle(fontSize: 18, color: _selectDate == null ? Color(0xFFF7D4F1) : Colors.white),
               ),
-              onTap: () => {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => SelectDates())
-                ),
-              },
+              // 선택한 날자값 받아오기
+              onTap: () => _navigatorReturnValue(context),
             ),
           ),
         ],
     );
   }
+
+  // 선택한 날짜 가져오기
+  _navigatorReturnValue(BuildContext context) async{
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SelectDates()),
+    );
+
+    setState(() {
+      _selectDate = result;
+    });
+  }
+
 }
