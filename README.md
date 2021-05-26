@@ -4,6 +4,7 @@ UI test <br/>
 <img src="./images/s_main2.png" width="200" height="400">
 <img src="./images/s_select_dates.png" width="200" height="400">
 <img src="./images/s_map.png" width="200" height="400">
+<img src="./images/s_drag.png" width="200" height="400">
 
 ## Getting Started
 
